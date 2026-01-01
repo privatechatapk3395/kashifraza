@@ -1,0 +1,1996 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>KASHIF RAZA ELITE TERMINAL v4.0 (2026 EDITION)</title>
+  <meta name="description" content="KASHIF RAZA ELITE TERMINAL v4.0 - 2026 Real-Time Database">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Roboto:wght@400;500;700&family=Roboto+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Reset and Base */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --neon-cyan: #00ffff;
+      --neon-yellow: #ffff00;
+      --neon-green: #00ff00;
+      --neon-orange: #ff6600;
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-5: 24px;
+      --space-6: 32px;
+      --space-7: 48px;
+      --space-8: 64px;
+      --radius-2: 4px;
+      --radius-3: 8px;
+      --radius-4: 12px;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: #000;
+      color: #fff;
+      line-height: 1.5;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Page Container */
+    .page {
+      min-height: 100vh;
+      min-height: 100dvh;
+      width: 100%;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Background - Optimized for mobile */
+    .background-wrapper {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      will-change: transform;
+    }
+
+    .background-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .background-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+    }
+
+    .matrix-grid {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 50px 50px;
+      pointer-events: none;
+    }
+
+    /* Container - Mobile optimized */
+    .container {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: var(--space-8) var(--space-3);
+      min-height: 100vh;
+      width: 95%;
+      max-width: 100%;
+      margin: 0 auto;
+    }
+
+    @media (min-width: 768px) {
+      .container {
+        padding: var(--space-8) var(--space-4);
+        width: 100%;
+      }
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      margin-bottom: var(--space-6);
+    }
+
+    .terminal-title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+      font-weight: 600;
+      color: #00ffff;
+      text-shadow: 0 0 10px #00ffff;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: var(--space-2);
+    }
+
+    .edition-badge {
+      display: inline-block;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(0.7rem, 2vw, 0.9rem);
+      font-weight: 700;
+      color: #000;
+      background: linear-gradient(135deg, #ffd700 0%, #ffaa00 50%, #ffd700 100%);
+      padding: var(--space-1) var(--space-4);
+      border-radius: var(--radius-2);
+      margin-bottom: var(--space-4);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(2rem, 8vw, 4rem);
+      font-weight: 700;
+      color: var(--neon-yellow);
+      text-shadow: 0 0 10px #ffff00, 0 0 20px #ffff00;
+      letter-spacing: 0.05em;
+    }
+
+    /* Avatar */
+    .avatar-section {
+      margin-bottom: var(--space-8);
+    }
+
+    .avatar {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--neon-cyan);
+    }
+
+    /* Stats */
+    .stats-section {
+      width: 100%;
+      max-width: 900px;
+      padding: var(--space-4) 0;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-3);
+    }
+
+    @media (min-width: 768px) {
+      .stats-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: var(--space-5);
+      }
+    }
+
+    .stat-box {
+      background: rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-4);
+      padding: var(--space-4) var(--space-3);
+      text-align: center;
+    }
+
+    .stat-number {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(1.5rem, 5vw, 2.5rem);
+      font-weight: 700;
+      color: var(--neon-yellow);
+      text-shadow: 0 0 10px #ffff00;
+      margin-bottom: var(--space-2);
+      line-height: 1.2;
+    }
+
+    .stat-label {
+      font-family: 'Roboto', sans-serif;
+      font-size: clamp(0.7rem, 2vw, 0.9rem);
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.8);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    /* Quote */
+    .quote-section {
+      width: 100%;
+      max-width: 800px;
+      text-align: center;
+      margin-bottom: var(--space-6);
+      padding: var(--space-4);
+    }
+
+    .quote {
+      font-family: 'Roboto', sans-serif;
+      font-size: clamp(1rem, 3vw, 1.4rem);
+      font-style: italic;
+      color: var(--neon-cyan);
+      text-shadow: 0 0 10px #00ffff;
+    }
+
+    /* Terminal */
+    .terminal-section {
+      width: 100%;
+      max-width: 700px;
+      margin: var(--space-8) 0;
+    }
+
+    .terminal-container {
+      background: rgba(0, 0, 0, 0.85);
+      border: 2px solid rgba(0, 255, 255, 0.3);
+      border-radius: var(--radius-4);
+      padding: var(--space-5);
+    }
+
+    @media (min-width: 768px) {
+      .terminal-container {
+        padding: var(--space-6);
+      }
+    }
+
+    .terminal-header-bar {
+      text-align: center;
+      padding: var(--space-3);
+      margin-bottom: var(--space-5);
+      background: rgba(0, 255, 255, 0.1);
+      border: 1px solid rgba(0, 255, 255, 0.3);
+      border-radius: var(--radius-2);
+    }
+
+    .terminal-header-text {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(0.85rem, 2vw, 1rem);
+      font-weight: 600;
+      color: #00ffff;
+      text-shadow: 0 0 10px #00ffff;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+    }
+
+    .terminal-header {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-2);
+      margin-bottom: var(--space-5);
+      flex-wrap: wrap;
+    }
+
+    .terminal-button {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+      font-weight: 600;
+      padding: var(--space-3) var(--space-5);
+      border: 2px solid;
+      border-radius: var(--radius-3);
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      background: transparent;
+      transition: all 0.2s ease;
+      min-height: 48px;
+      min-width: 120px;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .terminal-button.active {
+      color: var(--neon-cyan);
+      border-color: var(--neon-cyan);
+    }
+
+    .terminal-button.inactive {
+      color: #666;
+      border-color: #444;
+    }
+
+    .terminal-button.inactive:hover,
+    .terminal-button.inactive:active {
+      color: #999;
+      border-color: #666;
+    }
+
+    .terminal-button:disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+
+    .input-wrapper {
+      margin-bottom: var(--space-5);
+    }
+
+    .terminal-input {
+      width: 100%;
+      padding: var(--space-4);
+      font-family: 'Roboto Mono', monospace;
+      font-size: 1rem;
+      color: #ffffff;
+      background: rgba(0, 0, 0, 0.5);
+      border: 2px solid rgba(0, 255, 255, 0.3);
+      border-radius: var(--radius-3);
+      text-align: center;
+      transition: border-color 0.2s ease;
+      min-height: 56px;
+      -webkit-appearance: none;
+    }
+
+    .terminal-input:focus {
+      outline: none;
+      border-color: var(--neon-cyan);
+    }
+
+    .terminal-input::placeholder {
+      color: #666;
+    }
+
+    .search-button {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-3);
+      padding: var(--space-4) var(--space-5);
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #000;
+      background: var(--neon-cyan);
+      border: none;
+      border-radius: var(--radius-3);
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      transition: all 0.2s ease;
+      min-height: 56px;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .search-button:hover:not(:disabled),
+    .search-button:active:not(:disabled) {
+      background: #33ffff;
+    }
+
+    .search-button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    /* Terminal Output - Hardware accelerated */
+    .terminal-output-fullscreen {
+      padding: var(--space-4);
+      background: rgba(0, 0, 0, 0.95);
+      border: 1px solid #00ff00;
+      border-radius: var(--radius-3);
+      min-height: 200px;
+      font-family: 'Roboto Mono', monospace;
+      will-change: opacity, transform;
+      transform: translateZ(0);
+    }
+
+    .terminal-line {
+      color: #00ff00;
+      margin-bottom: var(--space-2);
+      line-height: 1.5;
+      font-family: 'Roboto Mono', monospace;
+      font-size: clamp(0.7rem, 1.6vw, 0.85rem);
+      will-change: opacity;
+      opacity: 0;
+      animation: fade-in 0.3s ease-out forwards;
+      transform: translateZ(0);
+    }
+
+    @keyframes fade-in {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .terminal-line.red-flash {
+      color: #ff0000;
+      animation: fade-in 0.3s ease-out forwards, flash-red 0.4s ease-in-out 2;
+    }
+
+    @keyframes flash-red {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.6; }
+    }
+
+    .terminal-line.nadra-line {
+      font-weight: 700;
+      font-size: clamp(0.75rem, 1.8vw, 0.9rem);
+      color: #ff4400;
+      text-shadow: 0 0 5px #ff0000, 0 0 10px #ff6600;
+      animation: fade-in 0.3s ease-out forwards, nadra-pulse 0.8s ease-in-out infinite;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    @keyframes nadra-pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.85; }
+    }
+
+    .connecting-message {
+      text-align: center;
+      margin-bottom: var(--space-4);
+    }
+
+    .connecting-text {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      font-weight: 700;
+      color: #00ffff;
+      text-shadow: 0 0 10px #00ffff;
+    }
+
+    .decrypting-animation {
+      margin-top: var(--space-4);
+      text-align: center;
+      will-change: opacity;
+      transform: translateZ(0);
+    }
+
+    .decrypting-text {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      font-weight: 700;
+      color: #00ffff;
+      text-shadow: 0 0 10px #00ffff;
+      display: block;
+      margin-bottom: var(--space-3);
+    }
+
+    .loading-bar {
+      width: 100%;
+      height: 6px;
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid #00ffff;
+      border-radius: var(--radius-2);
+      overflow: hidden;
+    }
+
+    .loading-progress {
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(90deg, #00ffff, #00ff00, #00ffff);
+      animation: loading-slide 0.6s linear infinite;
+      will-change: transform;
+      transform: translateZ(0);
+    }
+
+    @keyframes loading-slide {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    /* Result Card - IMPROVED with auto height */
+    .result-card {
+      padding: var(--space-4);
+      background: rgba(0, 0, 0, 0.95);
+      border: 2px solid rgba(0, 255, 255, 0.5);
+      border-radius: var(--radius-4);
+      height: auto;
+      min-height: fit-content;
+    }
+
+    @media (min-width: 768px) {
+      .result-card {
+        padding: var(--space-5);
+      }
+    }
+
+    .result-header {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(1.2rem, 3vw, 1.6rem);
+      font-weight: 700;
+      color: #00ff00;
+      text-shadow: 0 0 10px #00ff00;
+      text-align: center;
+      margin-bottom: var(--space-5);
+      padding-bottom: var(--space-3);
+      border-bottom: 1px solid rgba(0, 255, 0, 0.3);
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+    }
+
+    .result-header-error {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(1.2rem, 3vw, 1.6rem);
+      font-weight: 700;
+      color: #ff4444;
+      text-shadow: 0 0 10px #ff0000;
+      text-align: center;
+      margin-bottom: var(--space-5);
+      padding-bottom: var(--space-3);
+      border-bottom: 1px solid rgba(255, 0, 0, 0.3);
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+    }
+
+    .not-found-message {
+      font-family: 'Roboto Mono', monospace;
+      font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+      color: #ff6666;
+      text-align: center;
+      padding: var(--space-5);
+      background: rgba(255, 0, 0, 0.1);
+      border: 1px solid rgba(255, 0, 0, 0.3);
+      border-radius: var(--radius-3);
+      margin-bottom: var(--space-4);
+    }
+
+    .records-container {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+      margin-bottom: var(--space-5);
+      height: auto;
+      min-height: fit-content;
+      max-height: none;
+      overflow: visible;
+    }
+
+    .record-card {
+      background: rgba(0, 0, 0, 0.95);
+      border: 2px solid rgba(0, 255, 255, 0.5);
+      border-radius: var(--radius-4);
+      padding: var(--space-4);
+      height: auto;
+      min-height: fit-content;
+      box-shadow: 
+        0 0 8px rgba(0, 255, 255, 0.3),
+        0 0 16px rgba(0, 255, 255, 0.15),
+        inset 0 0 15px rgba(0, 255, 255, 0.05);
+    }
+
+    @media (min-width: 768px) {
+      .record-card {
+        padding: var(--space-5) var(--space-6);
+      }
+    }
+
+    .record-header {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #00ffff;
+      text-shadow: 0 0 10px #00ffff;
+      margin-bottom: var(--space-4);
+      padding-bottom: var(--space-3);
+      border-bottom: 2px solid rgba(0, 255, 255, 0.3);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .record-data {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+
+    .result-row {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: var(--space-3);
+      flex-wrap: wrap;
+    }
+
+    .result-row-address {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: var(--space-3);
+      flex-wrap: wrap;
+    }
+
+    .result-label {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 1.25rem;
+      color: #ffff00;
+      text-shadow: 0 0 8px #ffff00;
+      flex-shrink: 0;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .result-value {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 1.25rem;
+      color: #00ffff;
+      text-shadow: 0 0 8px #00ffff;
+      font-weight: 700;
+    }
+
+    .result-value-address {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 1.25rem;
+      color: #00ffff;
+      text-shadow: 0 0 8px #00ffff;
+      font-weight: 700;
+      word-break: break-word;
+      white-space: normal;
+      line-height: 1.5;
+    }
+
+    /* Extra data fields */
+    .result-extra-label {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 1rem;
+      color: #ff6600;
+      text-shadow: 0 0 5px #ff6600;
+      flex-shrink: 0;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .result-extra-value {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 1rem;
+      color: #00ff00;
+      text-shadow: 0 0 5px #00ff00;
+      font-weight: 600;
+    }
+
+    @media (max-width: 480px) {
+      .record-header {
+        font-size: 1.15rem;
+      }
+      .result-label {
+        font-size: 1.1rem;
+      }
+      .result-value,
+      .result-value-address {
+        font-size: 1.1rem;
+      }
+      .result-extra-label,
+      .result-extra-value {
+        font-size: 0.9rem;
+      }
+    }
+
+    .result-branding {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+      font-weight: 600;
+      color: #ffd700;
+      text-shadow: 0 0 10px #ffd700;
+      text-align: center;
+      margin-top: var(--space-4);
+      padding-top: var(--space-4);
+      border-top: 1px solid rgba(255, 215, 0, 0.3);
+      letter-spacing: 0.1em;
+    }
+
+    .result-verified {
+      font-family: 'Roboto', sans-serif;
+      font-size: clamp(0.75rem, 2vw, 0.85rem);
+      color: #00ffff;
+      text-shadow: 0 0 5px #00ffff;
+      text-align: center;
+      margin-top: var(--space-3);
+      letter-spacing: 0.05em;
+    }
+
+    .new-search-button {
+      width: 100%;
+      margin-top: var(--space-5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-3);
+      padding: var(--space-4) var(--space-5);
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #000;
+      background: var(--neon-cyan);
+      border: none;
+      border-radius: var(--radius-3);
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      transition: all 0.2s ease;
+      min-height: 52px;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .new-search-button:hover,
+    .new-search-button:active {
+      background: #33ffff;
+    }
+
+    /* Lock Screen */
+    .lock-screen {
+      position: relative;
+    }
+
+    .lock-alert {
+      padding: var(--space-5);
+      background: linear-gradient(
+        135deg,
+        rgba(139, 0, 0, 0.2) 0%,
+        rgba(0, 0, 0, 0.95) 50%,
+        rgba(139, 0, 0, 0.2) 100%
+      );
+      border: 3px solid #ff0000;
+      border-radius: var(--radius-4);
+      text-align: center;
+    }
+
+    @media (min-width: 768px) {
+      .lock-alert {
+        padding: var(--space-6);
+      }
+    }
+
+    .lock-title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(1.2rem, 4vw, 1.8rem);
+      font-weight: 700;
+      color: #ff0000;
+      text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
+      margin-bottom: var(--space-4);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+    }
+
+    .lock-message {
+      font-family: 'Roboto', sans-serif;
+      font-size: clamp(0.85rem, 2.5vw, 1rem);
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: var(--space-5);
+      line-height: 1.7;
+    }
+
+    .lock-pricing {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+      margin-bottom: var(--space-5);
+      padding: var(--space-4);
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 215, 0, 0.3);
+      border-radius: var(--radius-3);
+    }
+
+    .lock-pricing-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-3);
+      padding: var(--space-3) var(--space-4);
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 215, 0, 0.2);
+      border-radius: var(--radius-2);
+    }
+
+    .lock-plan-icon {
+      font-size: 1.2rem;
+    }
+
+    .lock-plan-name {
+      font-family: 'Roboto', sans-serif;
+      font-size: clamp(0.8rem, 2vw, 0.95rem);
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .lock-plan-price {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      font-weight: 700;
+      color: #ffd700;
+      text-shadow: 0 0 10px #ffd700;
+    }
+
+    .lock-system-id {
+      font-family: 'Roboto', sans-serif;
+      font-size: clamp(0.75rem, 2vw, 0.9rem);
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: var(--space-5);
+      line-height: 1.6;
+      padding: var(--space-3);
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: var(--radius-2);
+      border-left: 3px solid #ffd700;
+    }
+
+    .activation-section {
+      margin-top: var(--space-5);
+      padding: var(--space-4);
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(0, 255, 255, 0.3);
+      border-radius: var(--radius-3);
+    }
+
+    .activation-label {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(0.85rem, 2vw, 1rem);
+      font-weight: 600;
+      color: #00ffff;
+      text-shadow: 0 0 5px #00ffff;
+      margin-bottom: var(--space-3);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .activation-input {
+      width: 100%;
+      padding: var(--space-4);
+      font-family: 'Roboto Mono', monospace;
+      font-size: 0.95rem;
+      color: #ffffff;
+      background: rgba(0, 0, 0, 0.6);
+      border: 2px solid rgba(0, 255, 255, 0.3);
+      border-radius: var(--radius-2);
+      text-align: center;
+      min-height: 52px;
+      -webkit-appearance: none;
+    }
+
+    .activation-input:focus {
+      outline: none;
+      border-color: #00ffff;
+    }
+
+    .activation-input::placeholder {
+      color: #555;
+    }
+
+    .activation-error {
+      font-family: 'Roboto', sans-serif;
+      font-size: 0.8rem;
+      color: #ff4444;
+      text-align: center;
+      margin-top: var(--space-2);
+      padding: var(--space-2);
+      background: rgba(255, 0, 0, 0.1);
+      border-radius: var(--radius-2);
+    }
+
+    .activate-button {
+      width: 100%;
+      margin-top: var(--space-3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-2);
+      padding: var(--space-4) var(--space-4);
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #000;
+      background: linear-gradient(135deg, #00ffff 0%, #00cccc 50%, #00ffff 100%);
+      border: none;
+      border-radius: var(--radius-2);
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      transition: all 0.2s ease;
+      min-height: 52px;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .activate-button:hover:not(:disabled),
+    .activate-button:active:not(:disabled) {
+      background: linear-gradient(135deg, #33ffff 0%, #00e6e6 50%, #33ffff 100%);
+    }
+
+    .activate-button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .or-divider {
+      display: flex;
+      align-items: center;
+      margin: var(--space-5) 0;
+    }
+
+    .or-divider::before,
+    .or-divider::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .or-divider span {
+      padding: 0 var(--space-4);
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.5);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .buy-access-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-3);
+      padding: var(--space-4) var(--space-6);
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+      font-weight: 700;
+      color: #000;
+      background: linear-gradient(135deg, #ffd700 0%, #ffaa00 50%, #ffd700 100%);
+      border: none;
+      border-radius: var(--radius-3);
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      min-height: 52px;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .buy-access-button:hover,
+    .buy-access-button:active {
+      background: linear-gradient(135deg, #ffe44d 0%, #ffbb33 50%, #ffe44d 100%);
+    }
+
+    /* Intel Section - ENHANCED */
+    .intel-section {
+      width: 100%;
+      max-width: 900px;
+      margin: var(--space-8) 0;
+    }
+
+    .intel-card {
+      position: relative;
+      border-radius: var(--radius-4);
+      overflow: hidden;
+      border: 2px solid rgba(0, 255, 255, 0.3);
+    }
+
+    .intel-background {
+      width: 100%;
+      height: 450px;
+      object-fit: cover;
+    }
+
+    .intel-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.7) 0%,
+        rgba(0, 0, 0, 0.95) 100%
+      );
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      padding: var(--space-5);
+      text-align: center;
+      overflow-y: auto;
+    }
+
+    @media (min-width: 768px) {
+      .intel-overlay {
+        padding: var(--space-6);
+      }
+    }
+
+    .intel-title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(1.5rem, 4vw, 2.2rem);
+      font-weight: 700;
+      color: var(--neon-cyan);
+      text-shadow: 0 0 10px #00ffff;
+      margin-bottom: var(--space-4);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .intel-description {
+      font-family: 'Roboto', sans-serif;
+      font-size: clamp(0.9rem, 2vw, 1.1rem);
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.6;
+      max-width: 600px;
+      margin-bottom: var(--space-5);
+    }
+
+    /* Global nodes list */
+    .intel-nodes-section {
+      width: 100%;
+      max-width: 700px;
+      margin-top: var(--space-4);
+    }
+
+    .intel-nodes-title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #00ff00;
+      text-shadow: 0 0 8px #00ff00;
+      margin-bottom: var(--space-3);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-2);
+    }
+
+    .intel-nodes-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-2);
+    }
+
+    @media (min-width: 600px) {
+      .intel-nodes-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .intel-node-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: var(--space-2) var(--space-3);
+      background: rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(0, 255, 255, 0.2);
+      border-radius: var(--radius-2);
+    }
+
+    .intel-node-status {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #00ff00;
+      animation: pulse-glow 2s ease-in-out infinite;
+      will-change: opacity;
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.6; }
+    }
+
+    .intel-node-name {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 0.8rem;
+      color: #00ffff;
+    }
+
+    /* Recently scanned regions */
+    .intel-recent-section {
+      width: 100%;
+      max-width: 700px;
+      margin-top: var(--space-5);
+    }
+
+    .intel-recent-title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #ff6600;
+      text-shadow: 0 0 8px #ff6600;
+      margin-bottom: var(--space-3);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-2);
+    }
+
+    .intel-recent-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: var(--space-2);
+    }
+
+    .intel-recent-item {
+      padding: var(--space-1) var(--space-3);
+      background: rgba(255, 102, 0, 0.15);
+      border: 1px solid rgba(255, 102, 0, 0.4);
+      border-radius: var(--radius-2);
+      font-family: 'Roboto Mono', monospace;
+      font-size: 0.75rem;
+      color: #ff9933;
+    }
+
+    /* API Section - COMPLETELY REDESIGNED */
+    .api-section {
+      width: 100%;
+      max-width: 900px;
+      margin: var(--space-8) 0;
+    }
+
+    .api-card {
+      position: relative;
+      border-radius: var(--radius-4);
+      overflow: hidden;
+      border: 2px solid rgba(255, 255, 0, 0.3);
+    }
+
+    .api-background {
+      width: 100%;
+      height: auto;
+      min-height: 700px;
+      object-fit: cover;
+    }
+
+    .api-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.75) 0%,
+        rgba(0, 0, 0, 0.98) 100%
+      );
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      padding: var(--space-5);
+      text-align: center;
+      overflow-y: auto;
+    }
+
+    @media (min-width: 768px) {
+      .api-overlay {
+        padding: var(--space-6);
+      }
+    }
+
+    .api-title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(1.5rem, 4vw, 2.2rem);
+      font-weight: 700;
+      color: var(--neon-yellow);
+      text-shadow: 0 0 15px #ffff00;
+      margin-bottom: var(--space-3);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .api-subtitle {
+      font-family: 'Roboto', sans-serif;
+      font-size: clamp(0.85rem, 2vw, 1rem);
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: var(--space-5);
+    }
+
+    /* Status Board */
+    .api-status-board {
+      width: 100%;
+      max-width: 500px;
+      background: rgba(0, 0, 0, 0.8);
+      border: 2px solid rgba(0, 255, 255, 0.4);
+      border-radius: var(--radius-4);
+      padding: var(--space-4);
+      margin-bottom: var(--space-5);
+    }
+
+    .api-status-header {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #00ffff;
+      text-shadow: 0 0 10px #00ffff;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: var(--space-4);
+      padding-bottom: var(--space-2);
+      border-bottom: 1px solid rgba(0, 255, 255, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-2);
+    }
+
+    .api-status-rows {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+
+    .api-status-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--space-3);
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-2);
+    }
+
+    .api-status-left {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+    }
+
+    .api-status-icon {
+      font-size: 1rem;
+      width: 20px;
+      text-align: center;
+    }
+
+    .api-status-label {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    @media (min-width: 480px) {
+      .api-status-label {
+        font-size: 0.85rem;
+      }
+    }
+
+    .api-status-value {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-align: right;
+    }
+
+    @media (min-width: 480px) {
+      .api-status-value {
+        font-size: 0.95rem;
+      }
+    }
+
+    .api-status-value.online {
+      color: #00ff00;
+      text-shadow: 0 0 10px #00ff00;
+      animation: glow-pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes glow-pulse {
+      0%, 100% { text-shadow: 0 0 10px #00ff00; }
+      50% { text-shadow: 0 0 15px #00ff00, 0 0 20px #00ff00; }
+    }
+
+    .api-status-value.highlight {
+      color: #00ffff;
+      text-shadow: 0 0 8px #00ffff;
+    }
+
+    .api-status-value.gold {
+      color: #ffd700;
+      text-shadow: 0 0 8px #ffd700;
+    }
+
+    .api-status-value.fast {
+      color: #00ff00;
+      text-shadow: 0 0 8px #00ff00;
+    }
+
+    /* Neon divider */
+    .api-neon-divider {
+      width: 100%;
+      max-width: 400px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #00ffff, #ffff00, #00ffff, transparent);
+      margin: var(--space-4) 0;
+    }
+
+    /* Pricing section */
+    .pricing-table {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+      margin-bottom: var(--space-5);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .pricing-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--space-4);
+      background: rgba(0, 0, 0, 0.6);
+      border: 2px solid rgba(255, 255, 0, 0.4);
+      border-radius: var(--radius-3);
+    }
+
+    .pricing-name {
+      font-family: 'Roboto', sans-serif;
+      font-size: clamp(0.9rem, 2vw, 1rem);
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .pricing-price {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(1.2rem, 3vw, 1.5rem);
+      font-weight: 700;
+      color: var(--neon-yellow);
+      text-shadow: 0 0 10px #ffff00;
+    }
+
+    .api-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-2);
+      padding: var(--space-4) var(--space-6);
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #000;
+      background: linear-gradient(135deg, #ffff00 0%, #ffcc00 50%, #ffff00 100%);
+      border: none;
+      border-radius: var(--radius-3);
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      min-height: 52px;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .api-button:hover,
+    .api-button:active {
+      background: linear-gradient(135deg, #ffff33 0%, #ffe033 50%, #ffff33 100%);
+    }
+
+    /* Footer */
+    .footer {
+      width: 100%;
+      padding: var(--space-8) var(--space-4);
+      text-align: center;
+      margin-top: var(--space-8);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .copyright {
+      font-family: 'Roboto', sans-serif;
+      font-size: clamp(0.8rem, 2vw, 0.95rem);
+      color: rgba(255, 255, 255, 0.6);
+      line-height: 1.8;
+    }
+
+    .year-highlight {
+      color: #00ffff;
+      text-shadow: 0 0 10px #00ffff;
+      font-weight: 700;
+    }
+
+    .copyright-highlight {
+      color: var(--neon-yellow);
+      text-shadow: 0 0 5px #ffff00;
+    }
+
+    .footer-branding {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(0.75rem, 2vw, 0.9rem);
+      font-weight: 600;
+      color: #00ffff;
+      text-shadow: 0 0 5px #00ffff;
+      margin-top: var(--space-3);
+      letter-spacing: 0.1em;
+    }
+
+    /* Utility: Hidden */
+    .hidden {
+      display: none !important;
+    }
+
+    /* SVG Icons inline */
+    .icon {
+      width: 24px;
+      height: 24px;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+    }
+
+    .icon-small {
+      width: 18px;
+      height: 18px;
+    }
+
+    .icon-xs {
+      width: 16px;
+      height: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- Background -->
+    <div class="background-wrapper">
+      <img src="https://i.ibb.co/fGVG0Rkk/2.jpg" alt="" class="background-image" aria-hidden="true">
+      <div class="background-overlay"></div>
+      <div class="matrix-grid"></div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+      <!-- Header -->
+      <header class="header">
+        <div class="terminal-title">KASHIF RAZA ELITE TERMINAL v4.0</div>
+        <div class="edition-badge">2026 EDITION</div>
+        <h1 class="title">Kashif Raza👑</h1>
+      </header>
+
+      <!-- Avatar -->
+      <section class="avatar-section">
+        <img src="https://i.ibb.co/HL1STS3Z/1.jpg" alt="Kashif Raza" class="avatar">
+      </section>
+
+      <!-- Terminal -->
+      <section class="terminal-section">
+        <div class="terminal-container">
+          <div class="terminal-header-bar">
+            <span class="terminal-header-text">2026 Real-Time Database</span>
+          </div>
+
+          <!-- Search UI -->
+          <div id="search-ui">
+            <div class="terminal-header">
+              <button type="button" id="btn-sim" class="terminal-button active">Search by SIM</button>
+              <button type="button" id="btn-cnic" class="terminal-button inactive">Search by CNIC</button>
+            </div>
+            <div class="input-wrapper">
+              <input type="text" id="search-input" class="terminal-input" placeholder="Enter Phone Number (e.g., 03001234567)..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+            </div>
+            <button type="button" id="search-button" class="search-button" disabled>
+              <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 0 0 20"/><path d="M2 12h20"/><path d="M12 2v20"/></svg>
+              SEARCH
+            </button>
+          </div>
+
+          <!-- Terminal Output -->
+          <div id="terminal-output" class="terminal-output-fullscreen hidden"></div>
+
+          <!-- Result Card -->
+          <div id="result-card" class="result-card hidden"></div>
+
+          <!-- Lock Screen -->
+          <div id="lock-screen" class="lock-screen hidden">
+            <div class="lock-alert">
+              <div class="lock-title">PREMIUM ACCESS REQUIRED</div>
+              <p class="lock-message">
+                Your free search limit has been reached. To continue using
+                the Kashif Raza Elite Database (2026), please choose a
+                subscription plan:
+              </p>
+              <div class="lock-pricing">
+                <div class="lock-pricing-item">
+                  <span class="lock-plan-icon">🟢</span>
+                  <span class="lock-plan-name">Monthly Access</span>
+                  <span class="lock-plan-price">1000 Rs</span>
+                </div>
+                <div class="lock-pricing-item">
+                  <span class="lock-plan-icon">💎</span>
+                  <span class="lock-plan-name">Lifetime Access</span>
+                  <span class="lock-plan-price">5000 Rs</span>
+                </div>
+              </div>
+              <p class="lock-system-id">
+                Your System ID is locked. Contact the Official Admin to make
+                your payment and get your Activation Key instantly.
+              </p>
+              <div class="activation-section">
+                <div class="activation-label">Enter License Key</div>
+                <input type="text" id="activation-input" class="activation-input" placeholder="Enter your key..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+                <div id="activation-error" class="activation-error hidden"></div>
+                <button type="button" id="activate-button" class="activate-button" disabled>
+                  <svg class="icon-xs" viewBox="0 0 24 24"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></svg>
+                  ACTIVATE
+                </button>
+              </div>
+              <div class="or-divider"><span>OR</span></div>
+              <a href="https://t.me/kingkhatarnak302" target="_blank" rel="noopener noreferrer" class="buy-access-button">
+                <svg class="icon-small" viewBox="0 0 24 24"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></svg>
+                BUY KEY
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Quote -->
+      <section class="quote-section">
+        <p class="quote">"Trust is the key of success"</p>
+      </section>
+
+      <!-- Stats -->
+      <section class="stats-section">
+        <div class="stats-grid">
+          <div class="stat-box">
+            <div class="stat-number">300M+</div>
+            <div class="stat-label">Records</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-number">500K+</div>
+            <div class="stat-label">Searches</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-number">10K+</div>
+            <div class="stat-label">Active Clients</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-number">200+</div>
+            <div class="stat-label">API Users</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Global Intelligence Hub - ENHANCED -->
+      <section class="intel-section">
+        <div class="intel-card">
+          <img src="https://i.ibb.co/d0Qt9wfB/3.jpg" alt="Global Intelligence Hub" class="intel-background">
+          <div class="intel-overlay">
+            <h2 class="intel-title">Global Intelligence Hub</h2>
+            <p class="intel-description">
+              Harnessing the power of live data streams for real-time tracking
+              and record retrieval. Our 2026 Elite system connects to secure server nodes
+              across multiple continents for maximum coverage and speed.
+            </p>
+
+            <!-- Global Server Nodes -->
+            <div class="intel-nodes-section">
+              <div class="intel-nodes-title">
+                <span>🌐</span> GLOBAL SERVER NODES
+              </div>
+              <div class="intel-nodes-grid">
+                <div class="intel-node-item">
+                  <div class="intel-node-status"></div>
+                  <span class="intel-node-name">US-EAST-01</span>
+                </div>
+                <div class="intel-node-item">
+                  <div class="intel-node-status"></div>
+                  <span class="intel-node-name">US-WEST-02</span>
+                </div>
+                <div class="intel-node-item">
+                  <div class="intel-node-status"></div>
+                  <span class="intel-node-name">EU-CENTRAL</span>
+                </div>
+                <div class="intel-node-item">
+                  <div class="intel-node-status"></div>
+                  <span class="intel-node-name">ASIA-PAC-01</span>
+                </div>
+                <div class="intel-node-item">
+                  <div class="intel-node-status"></div>
+                  <span class="intel-node-name">ASIA-PAC-02</span>
+                </div>
+                <div class="intel-node-item">
+                  <div class="intel-node-status"></div>
+                  <span class="intel-node-name">ME-DUBAI</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Recently Scanned Regions -->
+            <div class="intel-recent-section">
+              <div class="intel-recent-title">
+                <span>📡</span> RECENTLY SCANNED REGIONS
+              </div>
+              <div class="intel-recent-list">
+                <span class="intel-recent-item">LAHORE-PK</span>
+                <span class="intel-recent-item">KARACHI-PK</span>
+                <span class="intel-recent-item">ISLAMABAD-PK</span>
+                <span class="intel-recent-item">PESHAWAR-PK</span>
+                <span class="intel-recent-item">FAISALABAD-PK</span>
+                <span class="intel-recent-item">MULTAN-PK</span>
+                <span class="intel-recent-item">RAWALPINDI-PK</span>
+                <span class="intel-recent-item">QUETTA-PK</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Enterprise API Section - COMPLETELY REDESIGNED -->
+      <section class="api-section">
+        <div class="api-card">
+          <img src="https://i.ibb.co/Vf6FsSj/4.jpg" alt="Enterprise Data API" class="api-background">
+          <div class="api-overlay">
+            <h2 class="api-title">Enterprise Data API</h2>
+            <p class="api-subtitle">High-Performance Command Center Interface</p>
+
+            <!-- Status Board -->
+            <div class="api-status-board">
+              <div class="api-status-header">
+                <span>⚡</span> SYSTEM STATUS BOARD
+              </div>
+              <div class="api-status-rows">
+                <div class="api-status-row">
+                  <div class="api-status-left">
+                    <span class="api-status-icon">🔒</span>
+                    <span class="api-status-label">System Status</span>
+                  </div>
+                  <span class="api-status-value online">ONLINE / SECURE</span>
+                </div>
+                <div class="api-status-row">
+                  <div class="api-status-left">
+                    <span class="api-status-icon">📊</span>
+                    <span class="api-status-label">Daily Search Limit</span>
+                  </div>
+                  <span class="api-status-value highlight">100,000 Requests</span>
+                </div>
+                <div class="api-status-row">
+                  <div class="api-status-left">
+                    <span class="api-status-icon">🌍</span>
+                    <span class="api-status-label">Global Data Nodes</span>
+                  </div>
+                  <span class="api-status-value highlight">24 Active Servers</span>
+                </div>
+                <div class="api-status-row">
+                  <div class="api-status-left">
+                    <span class="api-status-icon">🔐</span>
+                    <span class="api-status-label">Encryption Protocol</span>
+                  </div>
+                  <span class="api-status-value gold">AES-256 E2E</span>
+                </div>
+                <div class="api-status-row">
+                  <div class="api-status-left">
+                    <span class="api-status-icon">⚡</span>
+                    <span class="api-status-label">API Response Time</span>
+                  </div>
+                  <span class="api-status-value fast">&lt;15ms Ultra Fast</span>
+                </div>
+                <div class="api-status-row">
+                  <div class="api-status-left">
+                    <span class="api-status-icon">💾</span>
+                    <span class="api-status-label">Database Version</span>
+                  </div>
+                  <span class="api-status-value gold">V4.2.0 Elite</span>
+                </div>
+                <div class="api-status-row">
+                  <div class="api-status-left">
+                    <span class="api-status-icon">🏢</span>
+                    <span class="api-status-label">Uptime Guarantee</span>
+                  </div>
+                  <span class="api-status-value online">99.99% Tier-4 DC</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="api-neon-divider"></div>
+
+            <!-- Pricing -->
+            <div class="pricing-table">
+              <div class="pricing-item">
+                <span class="pricing-name">Quarterly Pass (3 Months)</span>
+                <span class="pricing-price">$10</span>
+              </div>
+              <div class="pricing-item">
+                <span class="pricing-name">Infinite Pass (Lifetime)</span>
+                <span class="pricing-price">$100</span>
+              </div>
+            </div>
+
+            <a href="https://t.me/kingkhatarnak302" target="_blank" rel="noopener noreferrer" class="api-button">
+              <svg class="icon-small" viewBox="0 0 24 24"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></svg>
+              ACQUIRE API KEY
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <p class="copyright">
+          © <span class="year-highlight">2026</span>
+          <span class="copyright-highlight">KASHIF RAZA</span> | ALL RIGHTS RESERVED.
+          <br>I am not bad, I am just rich.
+        </p>
+        <p class="footer-branding">Verified & Secured by Kashif Raza</p>
+      </footer>
+    </div>
+  </div>
+
+  <script>
+    // Configuration
+    const SEARCH_COUNT_KEY = 'hacker_portal_search_count';
+    const PREMIUM_KEY = 'hacker_portal_premium';
+    const MAX_SEARCHES = 3;
+    const MASTER_KEY = 'KashifRazaMaster';
+    const API_ENDPOINT = 'https://fam-official.serv00.net/api/famofc_simdatabase.php?number=';
+
+    // Terminal lines - Sequential animation with medium speed
+    const TERMINAL_LINES = [
+      { text: '> [SYSTEM] Initializing Kashif-Raza Deep Search Engine...', isRed: false, isNadra: false },
+      { text: '> [LINK] Routing traffic through 128-bit encrypted proxy...', isRed: false, isNadra: false },
+      { text: '> [FIREWALL] Bypassing government security layers...', isRed: true, isNadra: false },
+      { text: '> [SECURITY] BYPASSING NADRA FIREWALL & ENCRYPTED NODES...', isRed: false, isNadra: true },
+      { text: '> [PACKETS] Accessing central database nodes...', isRed: false, isNadra: false },
+      { text: '> [DECRYPT] Decrypting pak-server data packets...', isRed: false, isNadra: false },
+      { text: '> [SUCCESS] Target records found. Fetching data.', isRed: false, isNadra: false },
+    ];
+
+    // State
+    let searchType = 'sim';
+    let searchCount = 0;
+    let isLocked = false;
+    let isPremium = false;
+    let isAnimating = false;
+
+    // DOM Elements
+    const searchUI = document.getElementById('search-ui');
+    const terminalOutput = document.getElementById('terminal-output');
+    const resultCard = document.getElementById('result-card');
+    const lockScreen = document.getElementById('lock-screen');
+    const searchInput = document.getElementById('search-input');
+    const searchButton = document.getElementById('search-button');
+    const btnSim = document.getElementById('btn-sim');
+    const btnCnic = document.getElementById('btn-cnic');
+    const activationInput = document.getElementById('activation-input');
+    const activationError = document.getElementById('activation-error');
+    const activateButton = document.getElementById('activate-button');
+
+    // Initialize
+    function init() {
+      // Load from localStorage
+      const premiumStored = localStorage.getItem(PREMIUM_KEY);
+      if (premiumStored === 'true') {
+        isPremium = true;
+        isLocked = false;
+      } else {
+        const stored = localStorage.getItem(SEARCH_COUNT_KEY);
+        if (stored) {
+          searchCount = parseInt(stored, 10);
+          if (searchCount >= MAX_SEARCHES) {
+            isLocked = true;
+            showLockScreen();
+          }
+        }
+      }
+
+      // Event Listeners
+      btnSim.addEventListener('click', () => setSearchType('sim'));
+      btnCnic.addEventListener('click', () => setSearchType('cnic'));
+      searchInput.addEventListener('input', updateSearchButton);
+      searchInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && searchInput.value.trim()) {
+          executeSearch();
+        }
+      });
+      searchButton.addEventListener('click', executeSearch);
+      activationInput.addEventListener('input', updateActivateButton);
+      activateButton.addEventListener('click', activatePremium);
+    }
+
+    function setSearchType(type) {
+      searchType = type;
+      if (type === 'sim') {
+        btnSim.className = 'terminal-button active';
+        btnCnic.className = 'terminal-button inactive';
+        searchInput.placeholder = 'Enter Phone Number (e.g., 03001234567)...';
+      } else {
+        btnSim.className = 'terminal-button inactive';
+        btnCnic.className = 'terminal-button active';
+        searchInput.placeholder = 'Enter CNIC Number...';
+      }
+    }
+
+    function updateSearchButton() {
+      searchButton.disabled = !searchInput.value.trim();
+    }
+
+    function updateActivateButton() {
+      activateButton.disabled = !activationInput.value.trim();
+    }
+
+    function showLockScreen() {
+      searchUI.classList.add('hidden');
+      terminalOutput.classList.add('hidden');
+      resultCard.classList.add('hidden');
+      lockScreen.classList.remove('hidden');
+    }
+
+    function hideLockScreen() {
+      lockScreen.classList.add('hidden');
+      searchUI.classList.remove('hidden');
+    }
+
+    async function fetchFromApi(number) {
+      try {
+        const response = await fetch(`${API_ENDPOINT}${encodeURIComponent(number)}`);
+        if (!response.ok) {
+          return { records: [], error: 'Network error' };
+        }
+        const json = await response.json();
+        if (json.success && json.data && json.data.length > 0) {
+          return { records: json.data };
+        }
+        return { records: [] };
+      } catch {
+        return { records: [], error: 'Failed to fetch data' };
+      }
+    }
+
+    async function executeSearch() {
+      if (!isPremium && searchCount >= MAX_SEARCHES) {
+        isLocked = true;
+        showLockScreen();
+        return;
+      }
+
+      if (isLocked || isAnimating || !searchInput.value.trim()) return;
+
+      // Increment search count
+      searchCount++;
+      localStorage.setItem(SEARCH_COUNT_KEY, searchCount.toString());
+
+      isAnimating = true;
+      
+      // Hide search UI, show terminal output
+      searchUI.classList.add('hidden');
+      resultCard.classList.add('hidden');
+      terminalOutput.classList.remove('hidden');
+      terminalOutput.innerHTML = `
+        <div class="connecting-message">
+          <span class="connecting-text">CONNECTING TO SECURE SERVER...</span>
+        </div>
+      `;
+
+      // Start API fetch immediately (run in parallel with animation)
+      const query = searchInput.value.trim();
+      const fetchPromise = fetchFromApi(query);
+      
+      // Medium speed animation - 350ms per line (readable but professional)
+      let currentIndex = 0;
+      const LINE_DELAY = 350;
+
+      function animateNextLine() {
+        if (currentIndex < TERMINAL_LINES.length) {
+          const line = TERMINAL_LINES[currentIndex];
+          let lineClass = 'terminal-line';
+          if (line.isNadra) lineClass += ' nadra-line';
+          else if (line.isRed) lineClass += ' red-flash';
+
+          if (currentIndex === 0) {
+            terminalOutput.innerHTML = '';
+          }
+
+          const lineEl = document.createElement('div');
+          lineEl.className = lineClass;
+          lineEl.textContent = line.text;
+          terminalOutput.appendChild(lineEl);
+          
+          currentIndex++;
+          setTimeout(animateNextLine, LINE_DELAY);
+        } else {
+          // Show decrypting animation
+          const decryptEl = document.createElement('div');
+          decryptEl.className = 'decrypting-animation';
+          decryptEl.innerHTML = `
+            <span class="decrypting-text">DECRYPTING DATABASE...</span>
+            <div class="loading-bar">
+              <div class="loading-progress"></div>
+            </div>
+          `;
+          terminalOutput.appendChild(decryptEl);
+          
+          // Wait for API response
+          fetchPromise.then(result => {
+            setTimeout(() => {
+              isAnimating = false;
+              terminalOutput.classList.add('hidden');
+              showResults(result, query);
+            }, 400);
+          });
+        }
+      }
+
+      // Small initial delay then start animation
+      setTimeout(animateNextLine, 200);
+    }
+
+    function showResults(result, query) {
+      resultCard.classList.remove('hidden');
+      
+      if (result.error || result.records.length === 0) {
+        resultCard.innerHTML = `
+          <div class="result-header-error">ENTRY NOT FOUND</div>
+          <div class="not-found-message">No records found in 2026 database.</div>
+          <div class="result-branding">Powered by Kashif</div>
+          <div class="result-verified">Verified & Secured by Kashif Raza</div>
+          <button type="button" class="new-search-button" onclick="resetSearch()">NEW SEARCH</button>
+        `;
+      } else {
+        let recordsHtml = result.records.map((record, index) => {
+          return `
+            <div class="record-card">
+              <div class="record-header">RECORD #${index + 1}</div>
+              <div class="record-data">
+                <div class="result-row">
+                  <span class="result-label">📱 Number:</span>
+                  <span class="result-value">${record.number || 'N/A'}</span>
+                </div>
+                <div class="result-row">
+                  <span class="result-label">👤 Name:</span>
+                  <span class="result-value">${record.name || 'N/A'}</span>
+                </div>
+                <div class="result-row">
+                  <span class="result-label">🆔 CNIC:</span>
+                  <span class="result-value">${record.cnic || 'N/A'}</span>
+                </div>
+                <div class="result-row-address">
+                  <span class="result-label">🏠 Address:</span>
+                  <span class="result-value-address">${record.address || 'N/A'}</span>
+                </div>
+                <div class="result-row">
+                  <span class="result-extra-label">📶 Signal:</span>
+                  <span class="result-extra-value">Strong / Stable</span>
+                </div>
+                <div class="result-row">
+                  <span class="result-extra-label">🔐 Encryption:</span>
+                  <span class="result-extra-value">AES-256</span>
+                </div>
+              </div>
+            </div>
+          `;
+        }).join('');
+
+        resultCard.innerHTML = `
+          <div class="result-header">${result.records.length} RECORD${result.records.length > 1 ? 'S' : ''} FOUND</div>
+          <div class="records-container">${recordsHtml}</div>
+          <div class="result-branding">Powered by Kashif</div>
+          <div class="result-verified">Verified & Secured by Kashif Raza</div>
+          <button type="button" class="new-search-button" onclick="resetSearch()">NEW SEARCH</button>
+        `;
+      }
+    }
+
+    function resetSearch() {
+      searchInput.value = '';
+      terminalOutput.classList.add('hidden');
+      resultCard.classList.add('hidden');
+      searchUI.classList.remove('hidden');
+      updateSearchButton();
+    }
+
+    function activatePremium() {
+      if (activationInput.value === MASTER_KEY) {
+        isPremium = true;
+        isLocked = false;
+        localStorage.setItem(PREMIUM_KEY, 'true');
+        activationError.classList.add('hidden');
+        hideLockScreen();
+      } else {
+        activationError.textContent = 'Invalid activation key. Please contact admin.';
+        activationError.classList.remove('hidden');
+      }
+    }
+
+    // Start
+    init();
+  </script>
+</body>
+</html>
